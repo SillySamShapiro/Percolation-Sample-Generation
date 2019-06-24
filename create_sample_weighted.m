@@ -1,11 +1,11 @@
 %Spring 2019, Sam Shapiro
 
-function [sample, p_actual, sample_initial, comparison] = create_sample_weighted(m,n,p_i,p_0,c,distrobution)
+function [sample, p_actual, sample_initial, comparison] = create_sample_weighted(m,n,p_i,p_0,c,distribution)
 %mxn is the grid size. 
 %Start out with non-weighted version, with small initial p (p_i), p_0 is
 %probability for neighbor of distance 1 from a previously activated pixel to be activated, 
 %c is for exponential weights
-%Distrobution = 'exponential' or 'gaussian' defaults to gaussian. 'exponential'
+%distribution = 'exponential' or 'gaussian' defaults to gaussian. 'exponential'
 %uses an exponential with a power that is linear in distance.
 
 %I usually set p_i = 0.05, p_0 = 0.5 to 1.0, c = 1.0 and up 
@@ -40,7 +40,7 @@ deactive_coords = [row_d,col_d];
 [~,distance] = knnsearch(active_coords, deactive_coords);
 
 %Exponentially weighted probabilities for deactivated pixels
-if distrobution == "exponential"
+if distribution == "exponential"
     p = p_0*exp(c*(1-distance));
 else
    p = p_0*exp(-c*(1-distance).^2);
