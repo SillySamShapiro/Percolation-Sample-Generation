@@ -1,12 +1,12 @@
 %5/9/19 Sam Shapiro
 
-function [new_img, p_new, comparison] = iterate_clusters(img, p_1, c, distrobution)
+function [new_img, p_new, comparison] = iterate_clusters(img, p_1, c, distribution)
 %This function is a companion to create_sample_weighted.m. If you already
 %have one of these pixelated images, and want to use it as a seed to expand
 %from (like in the above function) this will do that. Much of the code
 %below is adapted from that function.
 
-%Distrobution = 'exponential' or 'gaussian' defaults to gaussian. 'exponential'
+%distribution = 'exponential' or 'gaussian' defaults to gaussian. 'exponential'
 %uses an exponential with a power that is linear in distance.
 
 
@@ -21,7 +21,7 @@ deactive_coords = [row_d,col_d];
 
 
 %Exponentially weighted probabilities for deactivated pixels
-if distrobution == "exponential"
+if distribution == "exponential"
     p = p_1*exp(c*(1-distance));
 else
     p = p_1*exp(-c*(1-distance).^2);
