@@ -22,7 +22,10 @@ n_activated = length(find(sample==0));
 p_actual = n_activated/(m*n);
 
 end
-%1 corrisponds to a white pixel, 0 corrisponds to a black pixel
-
 %Values of critical p: 0.592 for only nearest neighbors, 0.407 including
 %next nearest neighbors. 
+
+%1 corrisponds to a white pixel, 0 corrisponds to a black pixel
+
+%We call the black pixels "activated"; these are the sites where
+%superconducting material will be deposited
