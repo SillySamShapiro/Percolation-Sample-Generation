@@ -11,9 +11,9 @@ function [new_img, p_new, comparison] = iterate_clusters(img, p_0, c, distributi
 
 
 %find coordinates of activated and deactivated pixels
-[row_a,col_a] = find(img == 1);
+[row_a,col_a] = find(img == 0);
 active_coords = [row_a,col_a];
-[row_d,col_d ]= find(img == 0);
+[row_d,col_d ]= find(img == 1);
 deactive_coords = [row_d,col_d];
 
 %k nearest neighbor search
@@ -37,15 +37,15 @@ for j = 1:len
     
     x = rand;
     if x < prob(j,4)
-        new_img(prob(j,1),prob(j,2)) = 1;
-    else 
         new_img(prob(j,1),prob(j,2)) = 0;
+    else 
+        new_img(prob(j,1),prob(j,2)) = 1;
     end
 
 end
 
 %find p_new (ratio of white to black pixels in final image)
-n_activated = length(find(new_img==1));
+n_activated = length(find(new_img==0));
 p_new = n_activated/(numel(new_img));
 
 %Create an image that is the original image and the final image next to
